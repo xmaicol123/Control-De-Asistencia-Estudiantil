@@ -1,0 +1,152 @@
+create table admin
+(
+	id_admin int (2) zerofill not null auto_increment,
+	usuario_admin varchar (30),
+	password_admin text,
+	primary key (id_admin)
+);
+
+create table profesor 
+(
+	cod_profesor int (5) zerofill not null auto_increment,
+	nick_profesor varchar (30),
+	password_profesor text,
+	nombre_profesor varchar(50),
+	direccion varchar (50),
+	email varchar (50),
+	celular varchar (20),
+	primary key (cod_profesor)
+);
+
+create table carrera 
+(
+	cod_carrera int (3) zerofill not null auto_increment,
+	sigla_carrera varchar (20),
+	nombre_carrera varchar (100),
+	primary key (cod_carrera)
+);
+
+create table materia 
+(
+	cod_materia int (4) zerofill not null auto_increment,
+	sigla_materia varchar (10),
+	nombre_materia varchar (50),
+	creditos int,
+	descripcion varchar (30),
+	primary key (cod_materia)
+);
+
+create table estudiante 
+(
+	cod_estudiante int (6) zerofill not null auto_increment,
+	nombre_estudiante varchar (100),
+	email varchar (30),
+	celular varchar (20),
+	fecha_nacimiento date,
+	direccion varchar (100),
+	primary key (cod_estudiante)
+);
+
+create table carrera_materia 
+(
+	cod_carrera_materia int (8) zerofill not null auto_increment,
+	cod_carrera_1122 int (3) zerofill,
+	cod_materia_1122 int (4) zerofill,
+	semestre varchar (30),
+	primary key (cod_carrera_materia),
+	foreign key (cod_carrera_1122) references carrera (cod_carrera),
+	foreign key (cod_materia_1122) references materia (cod_materia)
+	
+);
+
+create table grupo 
+(
+	cod_grupo int (7) zerofill not null auto_increment,
+	cod_carrera_materia_99 int (8) zerofill,
+	cod_profesor_99 int (5) zerofill,
+	nombre_grupo varchar (30),
+	aula varchar (10),
+	dia varchar (10),
+	hora_inicio varchar (10),
+	hora_salida varchar (10),
+	primary key (cod_grupo),
+	foreign key (cod_carrera_materia_99) references carrera_materia (cod_carrera_materia),
+	foreign key (cod_profesor_99) references profesor (cod_profesor)
+);
+
+create table estudiante_grupo 
+(
+	cod_estudiante_grupo int (9) zerofill not null auto_increment,
+	cod_estudiante_546 int (6) zerofill,
+	cod_grupo_546 int (7) zerofill,
+	fecha_inscripcion date,
+	primary key (cod_estudiante_grupo),
+	foreign key (cod_estudiante_546) references estudiante (cod_estudiante),
+	foreign key (cod_grupo_546) references grupo (cod_grupo)
+);
+
+create table asistencia 
+(
+	cod_asistencia int (10) not null auto_increment,
+	cod_grupo_2587 int (7) zerofill,
+	cod_estudiante_2587 int (6) zerofill,
+	asistencia enum ('Asistencia','Falta'), 
+	fecha date,
+	primary key (cod_asistencia),
+	foreign key (cod_grupo_2587) references grupo (cod_grupo),
+	foreign key (cod_estudiante_2587) references estudiante (cod_grupo)
+);
+
+
+insert into carrera (sigla_carrera,nombre_carrera) values ('187-4','INGENIERIA EN SISTEMAS');
+insert into carrera (sigla_carrera,nombre_carrera) values ('187-3','INGENIERIA INFORMATICA');
+insert into carrera (sigla_carrera,nombre_carrera) values ('187-5','INGENIERIA EN REDES Y TELECOMUNICACIONES');
+insert into carrera (sigla_carrera,nombre_carrera) values ('180-1','ADMINISTRACION DE EMPRESAS');
+insert into carrera (sigla_carrera,nombre_carrera) values ('180-2','CIENCIAS DE LA EDUCACION');
+insert into carrera (sigla_carrera,nombre_carrera) values ('180-3','ENFERMERIA');
+insert into carrera (sigla_carrera,nombre_carrera) values ('180-4','INGENIERIA AGROPECUARIA');
+
+INSERT INTO PROFESOR (nick_profesor,password_profesor,nombre_profesor,direccion,email,celular) VALUES ('profesor1','202cb962ac59075b964b07152d234b70','EDWIN CALLE','B/ELL CARMEN','calle@hotmail.com','78598745');
+INSERT INTO PROFESOR (nick_profesor,password_profesor,nombre_profesor,direccion,email,celular) VALUES ('profesor2','202cb962ac59075b964b07152d234b70','EDWIN CALLIZAYA','B/ELL CARMEN','callizaya@hotmail.com','78598745');
+INSERT INTO PROFESOR (nick_profesor,password_profesor,nombre_profesor,direccion,email,celular) VALUES ('profesor3','202cb962ac59075b964b07152d234b70','DAVID INOCENTE','B/ELL CARMEN','inocente@hotmail.com','78598745');
+INSERT INTO PROFESOR (nick_profesor,password_profesor,nombre_profesor,direccion,email,celular) VALUES ('profesor4','202cb962ac59075b964b07152d234b70','JUAN ALVAREZ','B/ELL CARMEN','alvarez@hotmail.com','78598745');
+INSERT INTO PROFESOR (nick_profesor,password_profesor,nombre_profesor,direccion,email,celular) VALUES ('profesor5','202cb962ac59075b964b07152d234b70','NOLBERTO ZABALA','B/ELL CARMEN','zabala@hotmail.com','78598745');
+INSERT INTO PROFESOR (nick_profesor,password_profesor,nombre_profesor,direccion,email,celular) VALUES ('profesor6','202cb962ac59075b964b07152d234b70','LUIS FERNANDO VILLAROEL','B/ELL CARMEN','villaroel@hotmail.com','78598745');
+
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF511','TALLER DE GRADO I','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF513','TECNOLOGIA WEB','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF512','INGENIERIA DE SOFTWARE II','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF 552','ARQUITECTURA DEL SOFTWARE','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF462','AUDITORIA INFORMATICA','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF442','SISTEMAS DE INFORMACION GEOGRAFICA','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF423','REDES II','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('INF422','INGENIERIA DE SOFTWARE I','5','');
+INSERT INTO MATERIA (sigla_materia,nombre_materia,creditos,descripcion) VALUES ('ECO449','PREPARACION Y EVALUACION DE PROYECTOS','5','');
+
+INSERT INTO ADMIN (usuario_admin,password_admin) VALUES ('root','63a9f0ea7bb98050796b649e85481845');
+
+
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante1','202cb962ac59075b964b07152d234b70','ANZALDO ANZALDO DAVID','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante2','202cb962ac59075b964b07152d234b70','AOIZ CARBALLO ELIO','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante3','202cb962ac59075b964b07152d234b70','ARCE MENDUINA EDITH SONIA','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante4','202cb962ac59075b964b07152d234b70','BARBA DIAZ JOSE MILTON','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante5','202cb962ac59075b964b07152d234b70','BONILLA MORON GERARDO','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante6','202cb962ac59075b964b07152d234b70','FORONDA CASTRO JOSE','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante7','202cb962ac59075b964b07152d234b70','MEDINA COCA ULISES ELMER','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante8','202cb962ac59075b964b07152d234b70','MICHAGA SOLIZ MARTIN','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante9','202cb962ac59075b964b07152d234b70','MIRANDA PENA CARLOS','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante10','202cb962ac59075b964b07152d234b70','MOLINA AVILA RIDHER','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante11','202cb962ac59075b964b07152d234b70','MOSCOSO ZENTENO JOSE MANUEL','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante12','202cb962ac59075b964b07152d234b70','ROBLES CATARI IVETH BESCIE','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante13','202cb962ac59075b964b07152d234b70','RODRIGUEZ MARTINEZ OSCAR','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante14','202cb962ac59075b964b07152d234b70','SAAVEDRA AREVALO JOSE LUIS','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante15','202cb962ac59075b964b07152d234b70','USTAREZ MEDINA WILMAN','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante16','202cb962ac59075b964b07152d234b70','USTAREZ MEDINA MARIO WEIMAR','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante17','202cb962ac59075b964b07152d234b70','VARGAS ROSADO LAZARO','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante18','202cb962ac59075b964b07152d234b70','VARGAS VARGAS LUIS ALBERTO','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante19','202cb962ac59075b964b07152d234b70','ANIVARRO ALDUNATE SARA','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante20','202cb962ac59075b964b07152d234b70','BARRERO DE MORALES GIOVANNA','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+INSERT INTO estudiante (nick_estudiante,password_estudiante,nombre_estudiante,email,celular,fecha_nacimiento,direccion) VALUES ('estudiante21','202cb962ac59075b964b07152d234b70','BECERRA CACERES DE ROSADO LOURDES','user@hotmail.com','75391781','2017/05/05','B/CARMEN');
+
+
+

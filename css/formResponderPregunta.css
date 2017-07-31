@@ -1,0 +1,33 @@
+.divRespuesta
+{
+	width: 95%;
+	max-width: 900px;
+	margin: auto;
+	border: 2px solid black;
+	padding: 10px;
+	background: white;
+	color: black;
+	font-weight: bold;
+}
+.pPregunta
+{
+	color: blue;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.divRespuesta label
+{
+	cursor: pointer;
+}
+
+.btnReg
+{
+	width: 80%;
+	font-weight: bold;
+	color: white;
+	border: 2px solid black;
+	background: green;
+	max-width: 200px;
+	margin: 30px 0px;
+}

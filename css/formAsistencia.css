@@ -1,0 +1,87 @@
+.fechaAsistencia 
+{
+  margin:20px 0px;
+  padding: 10px;
+  border: 2px;
+  border-radius: 10px;
+}
+
+.btnA
+{
+  background: crimson;
+  color:#fff;
+  margin: 10px auto;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+}
+/*al dar clic hacer un scale*/
+.btnA:active{
+  transform: scale(1.05);
+}
+input[type=submit]
+{
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 1px solid darkgray;
+}
+
+.Asistencia 
+{
+  width: 100%;
+  max-width: 700px;
+  border: 2px solid black;
+  background: deepskyblue;
+  color: black;
+  font-size: 20px;
+}
+
+.Asistencia thead tr th
+{
+  border: 2px solid black;
+  box-sizing: border-box;
+  background: skyblue;
+  padding: 10px;
+}
+
+.Asistencia tbody tr td 
+{
+  border: 2px solid black;
+  box-sizing: border-box; 
+  text-align: center;
+}
+
+#radios
+{
+  width: 50px !important;
+  height: 50px !important;
+
+}
+
+/*LAS MEDIA QUERIES POR TAMAÑO*/
+@media (max-width: 480px)
+{
+#radios
+{
+  width: 30px !important;
+  margin: 30px !important;
+}
+.Asistencia
+{
+  font-size: 15px;
+}
+
+.btnA
+{
+  background: crimson;
+  color:#fff;
+  margin: 10px auto;
+  cursor: pointer;
+  width: 60%;
+  text-align: center;
+}
+
+
+}
